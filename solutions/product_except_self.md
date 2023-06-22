@@ -20,4 +20,9 @@ def productExceptSelf(self, nums: List[int]) -> List[int]:
 ```
 
 ## Scala
-### Soon...
+
+```scala
+def productExceptSelf(nums: Array[Int]): Array[Int] = {
+        (nums.scanLeft(1)(_ * _).init zip nums.scanRight(1)(_ * _).tail).map { case (a, b) => a * b}
+}
+```

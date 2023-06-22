@@ -19,4 +19,31 @@ def twoSum(self, nums: List[int], target: int) -> List[int]:
 ```
 
 ## Scala
-### Soon...
+
+```scala
+
+def twoSum(nums: Array[Int], target: Int): Array[Int] = {
+    
+    var myMap = Map[Int, Int]()
+    
+    for ((value, index) <- nums.zipWithIndex) {            
+        myMap.get(target - value).foreach(result => return Array(index, result))
+        myMap += (value -> index)
+    }        
+    Array()
+}
+
+
+ def twoSum(nums: Array[Int], target: Int): Array[Int] = {
+      def twoSumHelper(i: Int, acc: Map[Int,Int]): Array[Int] = {
+        val x = nums(i)
+        acc.get(x) match {
+          case None => twoSumHelper(i + 1, acc + ((target - x) ->  i))
+          case Some(s) =>  Array(s, i)
+        }
+      }
+      twoSumHelper(0, Map())
+    }
+
+
+```

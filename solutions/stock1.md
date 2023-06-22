@@ -20,4 +20,26 @@ def maxProfit(self, prices: List[int]) -> int:
 ```
 
 ## Scala
-### Soon...
+
+```scala
+def maxProfit(prices: Array[Int]): Int = {
+    var buy = Int.MaxValue
+    var profit = 0
+    
+    for(p <- prices){
+        if(p >= buy) {
+            profit = Math.max((p-buy),profit)
+        }          
+        buy = Math.min(buy,p)  
+    }
+    
+    profit
+}
+
+def maxProfit(prices: Array[Int]): Int = {
+    prices.foldLeft((Int.MaxValue, 0)) {
+        case ((minPrice, maxProfit), price) => (minPrice min price, maxProfit max (price - minPrice))
+    }._2 
+}
+
+```
